@@ -9,3 +9,9 @@
  * Start with the query you created in pagila-hw1 problem 16, but add the special_features column to the output.
  * Use this query as a subquery in a select statement similar to answer to the previous problem.
  */
+select unnest(special_features) special_feature, sum(amount) profit from film
+join inventory using(film_id)
+join rental using(inventory_id)
+join payment using(rental_id)
+group by special_feature
+ORDER BY special_feature;
